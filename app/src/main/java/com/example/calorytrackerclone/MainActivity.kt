@@ -15,6 +15,7 @@ import com.example.calorytrackerclone.ui.theme.CaloryTrackerCloneTheme
 import com.example.core.navigation.Route
 import com.example.onboarding_presentation.age.AgeScreen
 import com.example.onboarding_presentation.gender.GenderScreen
+import com.example.onboarding_presentation.height.HeightScreen
 import com.example.onboarding_presentation.welcome.WelcomeScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -46,7 +47,10 @@ class MainActivity : ComponentActivity() {
                             GenderScreen(onNavigate = navController::navigate)
                         }
                         composable(route = Route.HEIGHT) {
-
+                            HeightScreen(
+                                onNavigate = navController::navigate,
+                                scaffoldState = scaffoldState
+                            )
                         }
                         composable(route = Route.WEIGHT) {
 
