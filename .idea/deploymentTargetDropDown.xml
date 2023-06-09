@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="deploymentTargetDropDown">
+    <targetSelectedWithDropDown>
+      <Target>
+        <type value="BOOT_WITH_SNAPSHOT_TARGET" />
+        <deviceKey>
+          <Key>
+            <type value="VIRTUAL_DEVICE_PATH" />
+            <value value="C:\Users\DNA\.android\avd\Use_Me_as_a_Dislike.avd" />
+          </Key>
+        </deviceKey>
+        <snapshotKey value="C:\Users\DNA\.android\avd\Use_Me_as_a_Dislike.avd\snapshots\snap_2023-05-19_00-26-25" />
+      </Target>
+    </targetSelectedWithDropDown>
+    <timeTargetWasSelectedWithDropDown value="2023-06-09T03:07:52.817226800Z" />
+  </component>
+</project>
