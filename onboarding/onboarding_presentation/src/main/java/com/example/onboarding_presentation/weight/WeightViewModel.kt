@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.core.data.preferences.DefaultPreferences
+import com.example.core.domain.preferences.Preferences
 import com.example.core.util.UiEvent
 import com.example.core.util.UiText
 import com.example.core.R
@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WeightViewModel @Inject constructor(
-    private val defaultPreferences: DefaultPreferences
+    private val preferences: Preferences
 ) : ViewModel() {
     var weight by mutableStateOf("0")
         private set
@@ -44,7 +44,7 @@ class WeightViewModel @Inject constructor(
                 )
                 return@launch
             }
-            defaultPreferences.saveWeight(weightNumber)
+            preferences.saveWeight(weightNumber)
             _uiEvent.send(
                 UiEvent.Navigate(
                     Route.ACTIVITY

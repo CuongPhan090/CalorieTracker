@@ -5,11 +5,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.core.data.preferences.DefaultPreferences
 import com.example.core.domain.usecase.FilterOutDigit
 import com.example.core.navigation.Route
 import com.example.core.util.UiEvent
 import com.example.core.R
+import com.example.core.domain.preferences.Preferences
 import com.example.core.util.UiText
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AgeViewModel @Inject constructor(
-    private val defaultPreferences: DefaultPreferences,
+    private val preferences: Preferences,
     private val filterOutDigit: FilterOutDigit
 ) : ViewModel() {
 
@@ -45,7 +45,7 @@ class AgeViewModel @Inject constructor(
                 )
                 return@launch
             }
-            defaultPreferences.saveAge(ageNumber)
+            preferences.saveAge(ageNumber)
             _uiEvent.send(UiEvent.Navigate(Route.HEIGHT))
         }
     }

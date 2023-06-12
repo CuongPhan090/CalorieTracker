@@ -5,13 +5,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.core.data.preferences.DefaultPreferences
+import com.example.core.domain.preferences.Preferences
 import com.example.core.domain.usecase.FilterOutDigit
 import com.example.core.navigation.Route
 import com.example.core.util.UiEvent
-import com.example.core.util.UiText
 import com.example.onboarding_domain.use_case.ValidateNutritions
-import com.example.core.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -20,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NutritionGoalViewModel @Inject constructor(
-    private val defaultPreferences: DefaultPreferences,
+    private val preferences: Preferences,
     private val filterOutDigit: FilterOutDigit,
     private val validateNutritions: ValidateNutritions
 ) : ViewModel() {
@@ -56,9 +54,9 @@ class NutritionGoalViewModel @Inject constructor(
                 )
                 when (result) {
                     is ValidateNutritions.Result.Success -> {
-                        defaultPreferences.saveCarbRatio(result.carbRatio)
-                        defaultPreferences.saveProteinRatio(result.proteinRatio)
-                        defaultPreferences.saveFatRatio(result.fatRatio)
+                        preferences.saveCarbRatio(result.carbRatio)
+                        preferences.saveProteinRatio(result.proteinRatio)
+                        preferences.saveFatRatio(result.fatRatio)
 
                         viewModelScope.launch {
                             _uiEvent.send(UiEvent.Navigate(Route.TRACKER_OVERVIEW))

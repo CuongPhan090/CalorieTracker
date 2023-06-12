@@ -5,8 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.core.data.preferences.DefaultPreferences
 import com.example.core.domain.model.GoalType
+import com.example.core.domain.preferences.Preferences
 import com.example.core.navigation.Route
 import com.example.core.util.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class GoalViewModel @Inject constructor(
-    private val defaultPreferences: DefaultPreferences
+    private val preferences: Preferences
 ): ViewModel() {
 
     var goal by mutableStateOf<GoalType>(GoalType.KeepWeight)
@@ -33,7 +33,7 @@ class GoalViewModel @Inject constructor(
     fun onNextClick() {
         viewModelScope.launch {
             _uiEvent.send(UiEvent.Navigate(Route.NUTRITION_GOAL))
-            defaultPreferences.saveGoalType(goal)
+            preferences.saveGoalType(goal)
         }
     }
 }

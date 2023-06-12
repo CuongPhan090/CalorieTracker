@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.core.data.preferences.DefaultPreferences
+import com.example.core.domain.preferences.Preferences
 import com.example.core.domain.usecase.FilterOutDigit
 import com.example.core.util.UiEvent
 import com.example.core.util.UiText
@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HeightViewModel @Inject constructor(
-    private val defaultPreferences: DefaultPreferences,
+    private val preferences: Preferences,
     private val filterOutDigit: FilterOutDigit
 ) : ViewModel() {
 
@@ -45,7 +45,7 @@ class HeightViewModel @Inject constructor(
                 )
                 return@launch
             }
-            defaultPreferences.saveHeight(heightNumber)
+            preferences.saveHeight(heightNumber)
             _uiEvent.send(
                 UiEvent.Navigate(Route.WEIGHT)
             )

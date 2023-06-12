@@ -5,8 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.core.data.preferences.DefaultPreferences
 import com.example.core.domain.model.ActivityLevel
+import com.example.core.domain.preferences.Preferences
 import com.example.core.navigation.Route
 import com.example.core.util.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ActivityViewModel @Inject constructor(
-    private val defaultPreferences: DefaultPreferences
+    private val preferences: Preferences
 ) : ViewModel() {
 
     var activityLevel by mutableStateOf<ActivityLevel>(ActivityLevel.Medium)
@@ -37,7 +37,7 @@ class ActivityViewModel @Inject constructor(
                     Route.GOAL
                 )
             )
-            defaultPreferences.saveActivityLevel(activityLevel)
+            preferences.saveActivityLevel(activityLevel)
         }
     }
 }
