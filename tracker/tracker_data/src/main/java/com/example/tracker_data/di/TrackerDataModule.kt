@@ -57,7 +57,7 @@ object TrackerDataModule {
 
    @Provides
    @Singleton
-   fun provideTrackerRepository(db: TrackerDatabase, api: OpenFoodApi): TrackerRepositoryImpl {
+   fun provideTrackerRepository(db: TrackerDatabase, api: OpenFoodApi): TrackerRepository{
        return TrackerRepositoryImpl(
            dao = db.dao,
            openFoodApi = api
