@@ -13,8 +13,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.components.NutrientsBar
-import com.example.components.NutrientsBarInfo
 import com.example.components.UnitDisplay
 import com.example.core_ui.LocalSpacing
 import com.example.core.R
@@ -42,8 +40,9 @@ fun NutrientsHeader(
             )
             .background(MaterialTheme.colors.primary)
             .padding(
-                horizontal = spacing.spaceLarge,
-                vertical = spacing.spaceExtraLarge
+                start = spacing.spaceLarge,
+                end = spacing.spaceLarge,
+                bottom = spacing.spaceExtraLarge
             )
     ) {
         Row(
@@ -55,7 +54,8 @@ fun NutrientsHeader(
                 unit = stringResource(id = R.string.kcal),
                 amountColor = MaterialTheme.colors.onPrimary,
                 amountTextSize = 40.sp,
-                unitColor = MaterialTheme.colors.onPrimary
+                unitColor = MaterialTheme.colors.onPrimary,
+                modifier = Modifier.align(Alignment.Bottom)
             )
             Column {
                 Text(

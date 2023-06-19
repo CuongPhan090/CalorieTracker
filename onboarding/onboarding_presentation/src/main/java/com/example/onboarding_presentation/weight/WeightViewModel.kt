@@ -20,7 +20,7 @@ import javax.inject.Inject
 class WeightViewModel @Inject constructor(
     private val preferences: Preferences
 ) : ViewModel() {
-    var weight by mutableStateOf("0")
+    var weight by mutableStateOf("70")
         private set
 
     private var _uiEvent = Channel<UiEvent>()
