@@ -1,6 +1,5 @@
 package com.example.tracker_presentation.components
 
-import android.widget.Space
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -31,7 +30,8 @@ fun AddButton(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .clickable { onClick }
+            .padding(LocalSpacing.current.spaceMedium)
+            .clickable { onClick() }
             .clip(RoundedCornerShape(100f))
             .border(
                 width = 1.dp,
