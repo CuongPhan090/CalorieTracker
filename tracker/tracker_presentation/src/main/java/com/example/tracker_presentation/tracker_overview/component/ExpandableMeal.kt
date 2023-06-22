@@ -1,4 +1,4 @@
-package com.example.tracker_presentation.components
+package com.example.tracker_presentation.tracker_overview.component
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.sp
 import com.example.components.UnitDisplay
 import com.example.core_ui.LocalSpacing
 import com.example.core.R
+import com.example.tracker_presentation.components.NutrientInfo
 import com.example.tracker_presentation.tracker_overview.Meal
 
 @Composable

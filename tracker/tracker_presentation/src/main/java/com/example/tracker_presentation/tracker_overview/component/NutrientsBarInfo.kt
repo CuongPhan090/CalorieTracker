@@ -1,4 +1,4 @@
-package com.example.tracker_presentation.components
+package com.example.tracker_presentation.tracker_overview.component
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween

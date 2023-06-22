@@ -7,9 +7,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.calorytrackerclone.navigation.navigate
 import com.example.calorytrackerclone.ui.theme.CaloryTrackerCloneTheme
 import com.example.core.navigation.Route
@@ -21,6 +23,7 @@ import com.example.onboarding_presentation.height.HeightScreen
 import com.example.onboarding_presentation.nutrition_goal.NutritionGoalScreen
 import com.example.onboarding_presentation.weight.WeightScreen
 import com.example.onboarding_presentation.welcome.WelcomeScreen
+import com.example.tracker_presentation.search.SearchScreen
 import com.example.tracker_presentation.tracker_overview.TrackerOverviewScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,14 +43,12 @@ class MainActivity : ComponentActivity() {
                         composable(route = Route.WELCOME) {
                             WelcomeScreen(onNavigate = navController::navigate)
                         }
-
                         composable(route = Route.AGE) {
                             AgeScreen(
                                 onNavigate = navController::navigate,
                                 scaffoldState = scaffoldState
                             )
                         }
-
                         composable(route = Route.GENDER) {
                             GenderScreen(onNavigate = navController::navigate)
                         }
@@ -84,8 +85,35 @@ class MainActivity : ComponentActivity() {
                                 onNavigate = navController::navigate
                             )
                         }
-                        composable(route = Route.SEARCH) {
-
+                        composable(route = Route.SEARCH + "/{mealName}/{dayOfMonth}/{month}/{year}",
+                            arguments = listOf(
+                                navArgument("mealName") {
+                                    type = NavType.StringType
+                                },
+                                navArgument("dayOfMonth") {
+                                    type = NavType.IntType
+                                },
+                                navArgument("month") {
+                                    type = NavType.IntType
+                                },
+                                navArgument("year") {
+                                    type = NavType.IntType
+                                }
+                            )
+                        ) {
+                            val meal = it.arguments?.getString("mealName") ?: ""
+                            val dayOfMonth = it.arguments?.getInt("dayOfMonth") ?: 0
+                            val month = it.arguments?.getInt("month") ?: 0
+                            val year = it.arguments?.getInt("year") ?: 0
+                            SearchScreen(
+                                scaffoldState = scaffoldState,
+                                mealName = meal,
+                                dayOfMonth = dayOfMonth,
+                                month = month,
+                                year = year,
+                                onNavigateUp = {
+                                    navController.navigateUp()
+                                })
                         }
                     }
                 }

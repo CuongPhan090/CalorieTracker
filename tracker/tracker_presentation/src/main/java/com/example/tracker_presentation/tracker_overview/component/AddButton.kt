@@ -1,4 +1,4 @@
-package com.example.tracker_presentation.components
+package com.example.tracker_presentation.tracker_overview.component
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -31,8 +31,8 @@ fun AddButton(
         modifier = modifier
             .fillMaxWidth()
             .padding(LocalSpacing.current.spaceMedium)
-            .clickable { onClick() }
             .clip(RoundedCornerShape(100f))
+            .clickable { onClick() }
             .border(
                 width = 1.dp,
                 color = color,

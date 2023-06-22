@@ -1,4 +1,4 @@
-package com.example.tracker_presentation.components
+package com.example.tracker_presentation.tracker_overview.component
 
 import androidx.compose.animation.core.animateIntAsState
 import androidx.compose.foundation.background
@@ -20,6 +20,8 @@ import com.example.core_ui.CarbColor
 import com.example.core_ui.FatColor
 import com.example.core_ui.ProteinColor
 import com.example.tracker_presentation.tracker_overview.TrackerOverviewState
+import com.example.tracker_presentation.tracker_overview.component.NutrientsBar
+import com.example.tracker_presentation.tracker_overview.component.NutrientsBarInfo
 
 @Composable
 fun NutrientsHeader(

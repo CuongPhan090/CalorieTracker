@@ -1,4 +1,4 @@
-package com.example.tracker_presentation.components
+package com.example.tracker_presentation.tracker_overview.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -24,6 +24,7 @@ import coil.compose.rememberImagePainter
 import com.example.core.R
 import com.example.core_ui.LocalSpacing
 import com.example.tracker_domain.model.TrackedFood
+import com.example.tracker_presentation.components.NutrientInfo
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
