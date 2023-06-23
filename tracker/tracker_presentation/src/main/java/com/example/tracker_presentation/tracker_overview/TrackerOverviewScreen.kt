@@ -12,6 +12,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.core.util.UiEvent
 import com.example.core_ui.LocalSpacing
 import com.example.core.R
+import com.example.core.util.UiText
 import com.example.tracker_presentation.tracker_overview.component.*
 
 @Composable
@@ -63,22 +64,23 @@ fun TrackerOverviewScreen(
                 content = {
                     Column(modifier = Modifier.fillMaxWidth()) {
                         state.trackedFoods.forEach { food ->
-                            TrackedFoodItem(trackedFood = food) {
-                                viewModel.onEvent(
-                                    TrackerOverviewEvent.OnDeleteTrackedFoodClick(food)
-                                )
+                            if (food.mealType.name == meal.name.asString(context).lowercase()) {
+                                TrackedFoodItem(trackedFood = food) {
+                                    viewModel.onEvent(
+                                        TrackerOverviewEvent.OnDeleteTrackedFoodClick(food)
+                                    )
+                                }
                             }
                         }
+                        Spacer(modifier = Modifier.height(spacing.spaceSmall))
+
+                        AddButton(
+                            text = stringResource(id = R.string.add_meal, meal.name.asString(context)),
+                            onClick = {
+                                viewModel.onEvent(TrackerOverviewEvent.OnAddFoodClick(meal))
+                            }
+                        )
                     }
-
-                    Spacer(modifier = Modifier.height(spacing.spaceMedium))
-
-                    AddButton(
-                        text = stringResource(id = R.string.add_meal, meal.name.asString(context)),
-                        onClick = {
-                            viewModel.onEvent(TrackerOverviewEvent.OnAddFoodClick(meal))
-                        }
-                    )
                 },
                 modifier = Modifier.fillMaxWidth()
             )

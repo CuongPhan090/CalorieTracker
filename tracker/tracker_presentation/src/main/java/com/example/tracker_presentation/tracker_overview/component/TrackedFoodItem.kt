@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -36,53 +37,57 @@ fun TrackedFoodItem(
     val spacing = LocalSpacing.current
 
     Row(
-        modifier = Modifier
+        modifier = modifier
+            .padding(spacing.spaceSmall)
+            .shadow(
+                elevation = 2.dp,
+                shape = RoundedCornerShape(5.dp)
+            )
             .fillMaxWidth()
             .height(100.dp)
-            .padding(spacing.spaceSmall)
-            .clip(RoundedCornerShape(5.dp))
-            .shadow(
-                elevation = 1.dp
-            )
-            .background(MaterialTheme.colors.surface),
+            .background(MaterialTheme.colors.surface)
+            .padding(end = spacing.spaceSmall),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-
-        Image(
-            painter = rememberImagePainter(
-                data = trackedFood.imageUrl,
-                builder = {
-                    crossfade(true)
-                    error(R.drawable.ic_burger)
-                    fallback(R.drawable.ic_burger)
-                }
-            ),
-            contentDescription = trackedFood.name,
-            modifier = Modifier
-                .fillMaxHeight()
-                .aspectRatio(1f)
-        )
-
-        Column(
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text(
-                text = trackedFood.name,
-                style = MaterialTheme.typography.body1,
-                overflow = TextOverflow.Ellipsis,
-                maxLines = 2
-            )
-
-            Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
-
-            Text(
-                text = stringResource(
-                    id = R.string.nutrient_info,
-                    trackedFood.amount,
-                    trackedFood.calories
+        Row(modifier = Modifier.weight(1f)) {
+            Image(
+                painter = rememberImagePainter(
+                    data = trackedFood.imageUrl,
+                    builder = {
+                        crossfade(true)
+                        error(R.drawable.ic_burger)
+                        fallback(R.drawable.ic_burger)
+                    }
                 ),
-                style = MaterialTheme.typography.body2,
+                contentDescription = trackedFood.name,
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .aspectRatio(1f),
+                contentScale = ContentScale.Crop
             )
+
+            Column(
+                verticalArrangement = Arrangement.Center,
+                modifier = Modifier.padding(spacing.spaceMedium)
+            ) {
+                Text(
+                    text = trackedFood.name,
+                    style = MaterialTheme.typography.body1,
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 2
+                )
+
+                Spacer(modifier = Modifier.height(spacing.spaceSmall))
+
+                Text(
+                    text = stringResource(
+                        id = R.string.nutrient_info,
+                        trackedFood.amount,
+                        trackedFood.calories
+                    ),
+                    style = MaterialTheme.typography.body2,
+                )
+            }
         }
 
         Column(
@@ -91,7 +96,8 @@ fun TrackedFoodItem(
             Icon(
                 imageVector = Icons.Default.Close,
                 contentDescription = stringResource(id = R.string.delete),
-                modifier = Modifier.align(Alignment.End)
+                modifier = Modifier
+                    .align(Alignment.End)
                     .clickable { onDeleteClick() },
             )
 
