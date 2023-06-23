@@ -3,7 +3,6 @@ package com.example.tracker_presentation.search
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core.domain.usecase.FilterOutDigit
@@ -76,7 +75,7 @@ class SearchViewModel @Inject constructor(
     private fun executeSearch() {
         viewModelScope.launch {
             state = state.copy(
-                isSearch = true,
+                isSearching = true,
                 trackableFood = emptyList()
             )
 
@@ -87,7 +86,7 @@ class SearchViewModel @Inject constructor(
                     trackableFood = foods.map {
                         TrackableFoodUiState(food = it)
                     },
-                    isSearch = false,
+                    isSearching = false,
                     query = ""
                 )
             }.onFailure {

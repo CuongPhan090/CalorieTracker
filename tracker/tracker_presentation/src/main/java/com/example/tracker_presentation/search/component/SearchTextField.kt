@@ -25,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.example.core.R
 import com.example.core_ui.LocalSpacing
@@ -56,7 +57,9 @@ fun SearchTextField(
                 }
             ),
             // Enable the search field on the keyboard
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+            keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Search
+            ),
             modifier = Modifier
                 .shadow(
                     elevation = 2.dp,
