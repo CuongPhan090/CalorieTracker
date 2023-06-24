@@ -6,7 +6,7 @@ package com.example.core.util
  * Anything we want to do with the UI just once, not a state
  */
 sealed class UiEvent {
-    data class Navigate(val route: String) : UiEvent()
+    object Success : UiEvent()
     object NavigateUp : UiEvent()
     data class ShowSnackBar(val message: UiText): UiEvent()
 }

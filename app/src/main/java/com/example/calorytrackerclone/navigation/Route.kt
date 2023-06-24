@@ -1,4 +1,4 @@
-package com.example.core.navigation
+package com.example.calorytrackerclone.navigation
 
 object Route {
     const val WELCOME = "welcome"
