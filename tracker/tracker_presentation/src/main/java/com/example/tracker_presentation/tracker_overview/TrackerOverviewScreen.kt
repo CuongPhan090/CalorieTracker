@@ -53,19 +53,23 @@ fun TrackerOverviewScreen(
                 },
                 content = {
                     Column(modifier = Modifier.fillMaxWidth()) {
-                        state.trackedFoods.forEach { food ->
-                            if (food.mealType.name == meal.name.asString(context).lowercase()) {
-                                TrackedFoodItem(trackedFood = food) {
-                                    viewModel.onEvent(
-                                        TrackerOverviewEvent.OnDeleteTrackedFoodClick(food)
-                                    )
-                                }
+                        val foods = state.trackedFoods.filter {
+                            it.mealType == meal.mealType
+                        }
+                        foods.forEach { food ->
+                            TrackedFoodItem(trackedFood = food) {
+                                viewModel.onEvent(
+                                    TrackerOverviewEvent.OnDeleteTrackedFoodClick(food)
+                                )
                             }
                         }
                         Spacer(modifier = Modifier.height(spacing.spaceSmall))
 
                         AddButton(
-                            text = stringResource(id = R.string.add_meal, meal.name.asString(context)),
+                            text = stringResource(
+                                id = R.string.add_meal,
+                                meal.name.asString(context)
+                            ),
                             onClick = {
                                 onNavigateToSearch(
                                     meal.name.asString(context),
